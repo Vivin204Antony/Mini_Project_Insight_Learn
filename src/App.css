@@ -234,3 +234,50 @@ body {
     font-size: 1.5rem;
   }
 }
+
+
+/* Modal backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(16,24,40,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal content with animation and white card style */
+.modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 18px;
+  padding: 2rem 2rem 1rem 2rem;
+  box-shadow: 0 10px 48px rgba(31, 41, 55, 0.18);
+  min-width: 320px;
+  max-width: 95vw;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Close (X) button style */
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 22px;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #64748b;
+  cursor: pointer;
+  z-index: 1050;
+  transition: color 0.2s;
+}
+.modal-close-btn:hover { color: #3b82f6; }
+
+/* Hide scroll when modal is active */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* (You can keep your previous auth-section and .auth-card styling for inside the modal) */
