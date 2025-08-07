@@ -281,3 +281,34 @@ body.modal-open {
 }
 
 /* (You can keep your previous auth-section and .auth-card styling for inside the modal) */
+
+
+.google-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+  padding: 0.8rem 1.1rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 6px;
+  background: #fff;
+  color: #374151;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 1px 8px rgba(60,64,67,.08);
+  transition: background 0.2s, box-shadow 0.2s, border 0.2s;
+}
+
+.google-login-btn:hover {
+  background: #f2f3f4;
+  border-color: #4285f4;
+  box-shadow: 0 2px 16px rgba(60,64,67,.11);
+}
+
+.google-icon {
+  display: flex;
+  align-items: center;
+}
+
