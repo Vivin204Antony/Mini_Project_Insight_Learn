@@ -30,6 +30,7 @@ const LoginForm = ({ onClose }) => {
     // Get form data
     const formData = new FormData(e.target);
     const email = formData.get('email');
+    // eslint-disable-next-line no-unused-vars
     const password = formData.get('password');
     
     // TODO: Replace with your actual authentication logic
@@ -48,14 +49,44 @@ const LoginForm = ({ onClose }) => {
 
   const handleGoogleSuccess = ({ provider, data }) => {
     console.log('Google login success:', provider, data);
+    console.log('Full data object:', JSON.stringify(data, null, 2));
     
-    // Extract user info from Google response
+    // More comprehensive name extraction with better parsing
+    let userName = 'Google User'; // fallback
+    let userEmail = null;
+    let userAvatar = null;
+    
+    // Enhanced name extraction logic
+    if (data.name) {
+      userName = data.name;
+    } else if (data.given_name || data.family_name) {
+      userName = `${data.given_name || ''} ${data.family_name || ''}`.trim();
+    } else if (data.displayName) {
+      userName = data.displayName;
+    } else if (data.profile && data.profile.name) {
+      userName = data.profile.name;
+    } else if (data.profile && data.profile.given_name) {
+      userName = `${data.profile.given_name} ${data.profile.family_name || ''}`.trim();
+    } else if (data.email) {
+      // Extract and format name from email as last resort
+      const emailName = data.email.split('@')[0];
+      userName = emailName.replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+    
+    // Extract email from different possible locations
+    userEmail = data.email || (data.profile && data.profile.email) || null;
+    
+    // Extract avatar from different possible locations
+    userAvatar = data.picture || data.image || (data.profile && data.profile.picture) || null;
+    
     const googleUser = {
-      name: data.name || data.given_name || 'Google User',
-      email: data.email,
-      avatar: data.picture || null,
-      googleId: data.sub || data.id
+      name: userName,
+      email: userEmail,
+      avatar: userAvatar,
+      googleId: data.sub || data.id || (data.profile && data.profile.id)
     };
+    
+    console.log('Final user object:', googleUser);
     
     // Login with Google user data
     login(googleUser);
@@ -143,11 +174,14 @@ const LoginForm = ({ onClose }) => {
           transition={{ delay: 0.6 }}
         >
           <LoginSocialGoogle
-            client_id='956485276765-p5lb5q12gpfu7f8ih4s56p9e17fvjefc.apps.googleusercontent.com'
-            access_type='offline'
-            onResolve={handleGoogleSuccess}
-            onReject={handleGoogleError}
-          >
+  client_id='956485276765-p5lb5q12gpfu7f8ih4s56p9e17fvjefc.apps.googleusercontent.com'
+  scope="openid profile email"
+  discoveryDocs="claims_supported"
+  access_type="online"
+  onResolve={handleGoogleSuccess}
+  onReject={handleGoogleError}
+>
+
             <motion.button
               type="button"
               className="google-btn-inner"
@@ -186,6 +220,7 @@ const SignupForm = ({ onClose }) => {
     const formData = new FormData(e.target);
     const name = formData.get('name');
     const email = formData.get('email');
+    // eslint-disable-next-line no-unused-vars
     const password = formData.get('password');
     
     // TODO: Replace with your actual signup logic
@@ -203,14 +238,44 @@ const SignupForm = ({ onClose }) => {
 
   const handleGoogleSuccess = ({ provider, data }) => {
     console.log('Google signup success:', provider, data);
+    console.log('Full data object:', JSON.stringify(data, null, 2));
     
-    // Extract user info from Google response
+    // More comprehensive name extraction with better parsing
+    let userName = 'Google User'; // fallback
+    let userEmail = null;
+    let userAvatar = null;
+    
+    // Enhanced name extraction logic
+    if (data.name) {
+      userName = data.name;
+    } else if (data.given_name || data.family_name) {
+      userName = `${data.given_name || ''} ${data.family_name || ''}`.trim();
+    } else if (data.displayName) {
+      userName = data.displayName;
+    } else if (data.profile && data.profile.name) {
+      userName = data.profile.name;
+    } else if (data.profile && data.profile.given_name) {
+      userName = `${data.profile.given_name} ${data.profile.family_name || ''}`.trim();
+    } else if (data.email) {
+      // Extract and format name from email as last resort
+      const emailName = data.email.split('@')[0];
+      userName = emailName.replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+    
+    // Extract email from different possible locations
+    userEmail = data.email || (data.profile && data.profile.email) || null;
+    
+    // Extract avatar from different possible locations
+    userAvatar = data.picture || data.image || (data.profile && data.profile.picture) || null;
+    
     const googleUser = {
-      name: data.name || data.given_name || 'Google User',
-      email: data.email,
-      avatar: data.picture || null,
-      googleId: data.sub || data.id
+      name: userName,
+      email: userEmail,
+      avatar: userAvatar,
+      googleId: data.sub || data.id || (data.profile && data.profile.id)
     };
+    
+    console.log('Final user object:', googleUser);
     
     // Login with Google user data
     login(googleUser);
@@ -317,6 +382,7 @@ const SignupForm = ({ onClose }) => {
           <LoginSocialGoogle
             client_id='956485276765-p5lb5q12gpfu7f8ih4s56p9e17fvjefc.apps.googleusercontent.com'
             access_type='offline'
+            scope="openid profile email"
             onResolve={handleGoogleSuccess}
             onReject={handleGoogleError}
           >
