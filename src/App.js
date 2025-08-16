@@ -5,6 +5,7 @@ import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Dashboard from './pages/Dashboard';
+import ProfileSettings from './components/ProfileSettings'; // Add this import
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthModal from './components/AuthModal';
 import './App.css';
@@ -70,9 +71,10 @@ const AppContent = () => {
             element={<HeroSection />} 
           />
           
-          {/* Protected Dashboard route */}
+          {/* Protected routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile-settings" element={<ProfileSettings />} />
           </Route>
           
           {/* Redirect unknown routes to home */}

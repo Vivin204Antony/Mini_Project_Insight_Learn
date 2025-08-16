@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom'; // Added
 
 const cardVariants = {
   hidden: { opacity: 0, y: 24, scale: 0.98 },
@@ -24,6 +25,7 @@ const containerVariants = {
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const navigate = useNavigate(); // Added
 
   const modules = [
     {
@@ -57,8 +59,16 @@ const Dashboard = () => {
   ];
 
   const handleModuleClick = (moduleKey) => {
-    // TODO: Navigate to specific module page
-    console.log(`Clicked on ${moduleKey} module`);
+    if (moduleKey === 'profile') {
+      navigate('/profile-settings'); // Navigate to profile settings page
+    } else {
+      // TODO: Navigate to other specific module pages
+      console.log(`Clicked on ${moduleKey} module`);
+      // You can add navigation for other modules here later:
+      // if (moduleKey === 'upload') navigate('/upload-documents');
+      // if (moduleKey === 'progress') navigate('/progress-tracker');
+      // if (moduleKey === 'nudge') navigate('/motivational-nudge');
+    }
   };
 
   return (
