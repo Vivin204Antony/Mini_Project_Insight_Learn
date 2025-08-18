@@ -5,7 +5,7 @@ import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Dashboard from './pages/Dashboard';
-import ProfileSettings from './components/ProfileSettings'; // Add this import
+import ProfilePage from './components/ProfilePage'; // <-- Updated import
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthModal from './components/AuthModal';
 import './App.css';
@@ -28,29 +28,23 @@ const PageWrapper = ({ children }) => {
   );
 };
 
-// Main app content component (inside Router)
 const AppContent = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [isLoginMode, setIsLoginMode] = useState(true);
 
-  // Handler for navbar button clicks
   const openModal = (loginMode) => {
     setIsLoginMode(loginMode);
     setModalOpen(true);
   };
 
-  // Handler to close modal
   const closeModal = () => setModalOpen(false);
 
-  // Prevent body scroll when modal is open
   useEffect(() => {
     if (modalOpen) {
       document.body.classList.add('modal-open');
     } else {
       document.body.classList.remove('modal-open');
     }
-    
-    // Cleanup on unmount in case modal still open
     return () => {
       document.body.classList.remove('modal-open');
     };
@@ -62,7 +56,6 @@ const AppContent = () => {
         openModal={openModal}
         isLoginMode={isLoginMode}
       />
-      
       <PageWrapper>
         <Routes>
           {/* Home page route */}
@@ -70,18 +63,15 @@ const AppContent = () => {
             path="/" 
             element={<HeroSection />} 
           />
-          
           {/* Protected routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile-settings" element={<ProfileSettings />} />
+            <Route path="/profile-settings" element={<ProfilePage />} /> {/* <-- Highlighted change */}
           </Route>
-          
           {/* Redirect unknown routes to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </PageWrapper>
-      
       {/* Global modal for authentication */}
       <AuthModal
         isOpen={modalOpen}
@@ -92,7 +82,6 @@ const AppContent = () => {
   );
 };
 
-// Main App component with providers
 const App = () => {
   return (
     <AuthProvider>
