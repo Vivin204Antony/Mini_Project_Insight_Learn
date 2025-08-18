@@ -111,14 +111,17 @@
   background: #eff6ff;
 }
 
-/* Action Button */
+/* Consistent Button Styling - Save & Cancel */
 .profile-settings-actions {
   display: flex;
   justify-content: center;
+  gap: 15px;
   padding: 2rem 0;
+  margin-top: 1rem;
 }
 
-.save-profile-btn {
+.save-profile-btn,
+.cancel-profile-btn {
   background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
   color: white;
   border: none;
@@ -128,13 +131,54 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-width: 200px;
+  min-width: 170px;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+  outline: none;
 }
 
-.save-profile-btn:hover {
+.save-profile-btn:hover,
+.cancel-profile-btn:hover {
   background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.save-profile-btn:active,
+.cancel-profile-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+}
+
+/* Cancel button - slightly different but consistent style */
+.cancel-profile-btn {
+  background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+}
+
+.cancel-profile-btn:hover {
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+  box-shadow: 0 8px 25px rgba(100, 116, 139, 0.3);
+}
+
+/* Toast Notification */
+.profile-toast {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: #1e3a8a;
+  color: #fff;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 10px 32px rgba(30,58,138,0.13);
+  font-size: 1.05rem;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.toast-icon { 
+  font-size: 1.2rem; 
 }
 
 /* Responsive Design */
@@ -155,6 +199,17 @@
   .profile-settings-header h1 {
     font-size: 2rem;
   }
+
+  .profile-settings-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .save-profile-btn,
+  .cancel-profile-btn {
+    min-width: 200px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -171,5 +226,12 @@
   .form-group select,
   .form-group textarea {
     padding: 0.6rem 0.8rem;
+  }
+
+  .save-profile-btn,
+  .cancel-profile-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    min-width: 180px;
   }
 }
