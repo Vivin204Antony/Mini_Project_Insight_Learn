@@ -1,0 +1,108 @@
+.profile-view-wrapper {
+  max-width: 800px;
+  margin: 30px auto 0 auto;
+  padding: 24px 12px;
+}
+
+.profile-header-card {
+  margin-bottom: 32px;
+  padding-bottom: 0;
+}
+
+.profile-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.profile-header-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.edit-profile-btn {
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.07rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(38, 99, 235, 0.08);
+  transition: background 0.2s, transform 0.18s;
+}
+.edit-profile-btn:hover {
+  background: #1e40af;
+  transform: translateY(-2px);
+}
+
+/* Shared Card styles */
+.profile-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px 0 rgba(30, 58, 138, 0.10);
+  margin-bottom: 2rem;
+  padding: 1.5rem 1.7rem;
+  transition: box-shadow 0.18s;
+}
+.profile-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.01em;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+/* Responsive grid/flex for sections */
+.profile-sections-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+@media (max-width: 900px) {
+  .profile-sections-container {
+    flex-direction: column;
+    gap: 22px;
+  }
+  .profile-view-wrapper {
+    padding: 14px 4px;
+  }
+}
+
+/* List & Link Styles */
+.profile-list p {
+  margin: 0.15rem 0 0.4rem 0;
+  font-size: 1.03rem;
+  color: #222a40;
+}
+
+.profile-links-list {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.profile-link-btn {
+  background: none;
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none; /* REMOVED UNDERLINE */
+  border: 1px solid #2563eb;
+  border-radius: 7px;
+  padding: 7px 18px;
+  margin-bottom: 7px;
+  transition: background 0.13s, color 0.13s;
+  display: inline-block;
+}
+.profile-link-btn:hover {
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none; /* KEEP NO UNDERLINE ON HOVER */
+}
