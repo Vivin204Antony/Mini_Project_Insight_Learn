@@ -1,66 +1,30 @@
-import React, { useState } from 'react';
-import './ProfileSettings.css'; // We'll create this next
+import React, { useState, useEffect } from 'react';
+import './ProfileSettings.css';
 
 // Reusable card component for consistent styling
-const ProfileCard = ({ title, children }) => {
-  return (
-    <div className="profile-card">
-      <h2 className="profile-card-title">{title}</h2>
-      <div className="profile-card-content">
-        {children}
-      </div>
-    </div>
-  );
-};
+const ProfileCard = ({ title, children }) => (
+  <div className="profile-card">
+    <h2 className="profile-card-title">{title}</h2>
+    <div className="profile-card-content">{children}</div>
+  </div>
+);
 
-const ProfileSettings = () => {
-  // State to manage all profile data
-  const [profileData, setProfileData] = useState({
-    // Identity section
-    firstName: '',
-    lastName: '',
-    username: '',
-    email: '',
-    phone: '',
-    dob: '',
-    gender: '',
-    profilePicture: null,
-    
-    // Learning Data section
-    educationLevel: '',
-    completedDegrees: '',
-    certificates: [],
-    devCourses: '',
-    learningGoals: '',
-    
-    // Achievements section
-    badges: '',
-    leaderboard: '',
-    hackathonProofs: [],
-    additionalCertificates: [],
-    
-    // Professional Presence section
-    linkedin: '',
-    leetcode: '',
-    github: '',
-    portfolio: ''
-  });
+const ProfileSettings = ({ initialProfile, onSave, onCancel }) => {
+  const [profileData, setProfileData] = useState(initialProfile);
 
-  // Handle form input changes
+  useEffect(() => {
+    setProfileData(initialProfile);
+  }, [initialProfile]);
+
+  // Only handle text fields now
   const handleInputChange = (e) => {
-    const { name, value, files } = e.target;
-    setProfileData(prev => ({
-      ...prev,
-      [name]: files ? Array.from(files) : value
-    }));
+    const { name, value } = e.target;
+    setProfileData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Profile data:', profileData);
-    // Here you would typically send data to your backend
-    alert('Profile updated successfully!');
+    onSave({ ...profileData });
   };
 
   return (
@@ -69,7 +33,6 @@ const ProfileSettings = () => {
         <h1>User Profile & Settings</h1>
         <p>Manage your professional learning profile</p>
       </div>
-
       <form onSubmit={handleSubmit} className="profile-settings-vertical-flow">
         {/* Section 1: Identity */}
         <ProfileCard title="Identity">
@@ -97,17 +60,6 @@ const ProfileSettings = () => {
               />
             </div>
           </div>
-
-          <div className="form-group">
-            <label>Profile Picture</label>
-            <input
-              type="file"
-              name="profilePicture"
-              onChange={handleInputChange}
-              accept="image/*"
-            />
-          </div>
-
           <div className="form-group">
             <label>Username / Display Name *</label>
             <input
@@ -119,7 +71,6 @@ const ProfileSettings = () => {
               required
             />
           </div>
-
           <div className="form-group">
             <label>Email Address *</label>
             <input
@@ -131,7 +82,6 @@ const ProfileSettings = () => {
               required
             />
           </div>
-
           <div className="form-row">
             <div className="form-group">
               <label>Phone Number</label>
@@ -153,7 +103,6 @@ const ProfileSettings = () => {
               />
             </div>
           </div>
-
           <div className="form-group">
             <label>Gender (optional)</label>
             <select name="gender" value={profileData.gender} onChange={handleInputChange}>
@@ -165,7 +114,6 @@ const ProfileSettings = () => {
             </select>
           </div>
         </ProfileCard>
-
         {/* Section 2: Learning Data */}
         <ProfileCard title="Learning Data">
           <div className="form-group">
@@ -184,7 +132,6 @@ const ProfileSettings = () => {
               <option value="other">Other</option>
             </select>
           </div>
-
           <div className="form-group">
             <label>Completed Degrees</label>
             <textarea
@@ -195,18 +142,6 @@ const ProfileSettings = () => {
               rows="3"
             />
           </div>
-
-          <div className="form-group">
-            <label>Earned Certificates (Upload files)</label>
-            <input
-              type="file"
-              name="certificates"
-              onChange={handleInputChange}
-              multiple
-              accept=".pdf,.jpg,.jpeg,.png"
-            />
-          </div>
-
           <div className="form-group">
             <label>Professional Development Courses</label>
             <textarea
@@ -217,7 +152,6 @@ const ProfileSettings = () => {
               rows="3"
             />
           </div>
-
           <div className="form-group">
             <label>Custom Learning Goals</label>
             <textarea
@@ -229,7 +163,6 @@ const ProfileSettings = () => {
             />
           </div>
         </ProfileCard>
-
         {/* Section 3: Achievements */}
         <ProfileCard title="Achievements">
           <div className="form-group">
@@ -242,7 +175,6 @@ const ProfileSettings = () => {
               rows="3"
             />
           </div>
-
           <div className="form-group">
             <label>Leaderboard Rankings</label>
             <textarea
@@ -253,30 +185,7 @@ const ProfileSettings = () => {
               rows="3"
             />
           </div>
-
-          <div className="form-group">
-            <label>Hackathon / Event Participation</label>
-            <input
-              type="file"
-              name="hackathonProofs"
-              onChange={handleInputChange}
-              multiple
-              accept=".pdf,.jpg,.jpeg,.png"
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Additional Certificates</label>
-            <input
-              type="file"
-              name="additionalCertificates"
-              onChange={handleInputChange}
-              multiple
-              accept=".pdf,.jpg,.jpeg,.png"
-            />
-          </div>
         </ProfileCard>
-
         {/* Section 4: Professional Presence */}
         <ProfileCard title="Professional Presence">
           <div className="form-group">
@@ -289,7 +198,6 @@ const ProfileSettings = () => {
               placeholder="https://linkedin.com/in/yourprofile"
             />
           </div>
-
           <div className="form-group">
             <label>LeetCode / Coding Profile</label>
             <input
@@ -300,7 +208,6 @@ const ProfileSettings = () => {
               placeholder="https://leetcode.com/yourprofile"
             />
           </div>
-
           <div className="form-group">
             <label>GitHub Repository</label>
             <input
@@ -311,7 +218,6 @@ const ProfileSettings = () => {
               placeholder="https://github.com/yourprofile"
             />
           </div>
-
           <div className="form-group">
             <label>Personal Portfolio / Website</label>
             <input
@@ -323,12 +229,16 @@ const ProfileSettings = () => {
             />
           </div>
         </ProfileCard>
-
-        {/* Submit Button */}
         <div className="profile-settings-actions">
-          <button type="submit" className="save-profile-btn">
-            Save Profile Changes
-          </button>
+          <button type="submit" className="save-profile-btn">Save Profile Changes</button>
+          {onCancel && (
+            <button
+              type="button"
+              className="cancel-profile-btn"
+              style={{marginLeft: '12px'}}
+              onClick={onCancel}
+            >Cancel</button>
+          )}
         </div>
       </form>
     </div>
