@@ -176,3 +176,63 @@
     display: block;
   }
 }
+
+
+
+
+/* Profile Notification Styles */
+.profile-notification {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: #1e3a8a;
+  color: white;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 10px 32px rgba(30, 58, 138, 0.3);
+  z-index: 9999;
+  max-width: 400px;
+  min-width: 280px;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.notification-icon {
+  font-size: 1.2rem;
+}
+
+.notification-message {
+  flex: 1;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.notification-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-notification {
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    max-width: none;
+  }
+}
+

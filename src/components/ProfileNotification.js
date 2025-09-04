@@ -13,7 +13,13 @@ const ProfileNotification = ({ message, onClose }) => {
       <div className="notification-content">
         <span className="notification-icon">✅</span>
         <span className="notification-message">{message}</span>
-        <button className="notification-close" onClick={onClose}>X</button>
+        <button 
+          className="notification-close" 
+          onClick={onClose}
+          type="button"
+        >
+          ✕
+        </button>
       </div>
     </motion.div>
   );

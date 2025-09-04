@@ -4,23 +4,30 @@
   padding: 24px 12px;
 }
 
-.profile-header-card {
-  margin-bottom: 32px;
-  padding-bottom: 0;
+.profile-main-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  padding: 2.5rem;
+  border: 1px solid #e2e8f0;
 }
 
-.profile-header-row {
+.profile-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #e2e8f0;
   gap: 16px;
   flex-wrap: wrap;
 }
 
-.profile-header-title {
+.profile-title {
   font-size: 1.7rem;
   font-weight: 700;
   color: #1e3a8a;
+  margin: 0;
 }
 
 .edit-profile-btn {
@@ -40,60 +47,61 @@
   transform: translateY(-2px);
 }
 
-/* Shared Card styles */
-.profile-card {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 8px 28px 0 rgba(30, 58, 138, 0.10);
-  margin-bottom: 2rem;
-  padding: 1.5rem 1.7rem;
-  transition: box-shadow 0.18s;
+/* Sections Container */
+.profile-sections {
+  display: grid;
+  gap: 1.5rem;
 }
-.profile-card-title {
+
+/* Individual Section Cards */
+.profile-section-card {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 1.5rem 1.7rem;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 28px 0 rgba(30, 58, 138, 0.10);
+  margin-bottom: 1rem;
+}
+.profile-section-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.section-title {
   font-size: 1.15rem;
   font-weight: 700;
   margin-bottom: 0.7rem;
   letter-spacing: 0.01em;
   color: #1e3a8a;
-  text-align: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #cbd5e1;
 }
 
-/* Responsive grid/flex for sections */
-.profile-sections-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  justify-content: center;
-}
-@media (max-width: 900px) {
-  .profile-sections-container {
-    flex-direction: column;
-    gap: 22px;
-  }
-  .profile-view-wrapper {
-    padding: 14px 4px;
-  }
-}
-
-/* List & Link Styles */
-.profile-list p {
+.section-content p {
   margin: 0.15rem 0 0.4rem 0;
   font-size: 1.03rem;
   color: #222a40;
+  line-height: 1.6;
 }
 
-.profile-links-list {
+.section-content strong {
+  color: #1e293b;
+  margin-right: 0.5rem;
+}
+
+/* Professional Links */
+.profile-links {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 0.5rem;
 }
-
-.profile-link-btn {
+.profile-link {
   background: none;
   color: #2563eb;
   font-weight: 600;
-  text-decoration: none; /* REMOVED UNDERLINE */
+  text-decoration: none;
   border: 1px solid #2563eb;
   border-radius: 7px;
   padding: 7px 18px;
@@ -101,8 +109,55 @@
   transition: background 0.13s, color 0.13s;
   display: inline-block;
 }
-.profile-link-btn:hover {
+.profile-link:hover {
   background: #2563eb;
   color: #fff;
-  text-decoration: none; /* KEEP NO UNDERLINE ON HOVER */
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .profile-view-wrapper {
+    padding: 14px 4px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-view-wrapper {
+    padding: 1rem 0.5rem;
+  }
+  .profile-main-card {
+    padding: 1.5rem;
+  }
+  .profile-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  .profile-title {
+    font-size: 1.5rem;
+  }
+  .edit-profile-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  .profile-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-main-card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  .profile-section-card {
+    padding: 1rem;
+  }
+  .section-title {
+    font-size: 1.1rem;
+  }
+  .section-content p {
+    font-size: 0.9rem;
+  }
 }

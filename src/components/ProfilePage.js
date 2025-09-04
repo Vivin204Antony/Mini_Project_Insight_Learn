@@ -3,9 +3,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import ProfileView from "./ProfileView";
 import ProfileSettings from "./ProfileSettings";
 import ProfileNotification from "./ProfileNotification";
-import './ProfilePage.css'; // For custom styles
+import './ProfilePage.css';
 
-// Default (empty) profile structure
+// Default (empty) profile structure - ALWAYS START EMPTY FOR EDITING
 const emptyProfile = {
   firstName: "",
   lastName: "",
@@ -14,16 +14,12 @@ const emptyProfile = {
   phone: "",
   dob: "",
   gender: "",
-  profilePicture: null,
   educationLevel: "",
   completedDegrees: "",
-  certificates: [],
   devCourses: "",
   learningGoals: "",
   badges: "",
   leaderboard: "",
-  hackathonProofs: [],
-  additionalCertificates: [],
   linkedin: "",
   leetcode: "",
   github: "",
@@ -35,12 +31,19 @@ const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
   const [notification, setNotification] = useState(null);
 
-  // On mount: check if profile data saved in localStorage
+  // On mount: check if profile exists
   useEffect(() => {
     const storedProfile = localStorage.getItem("userProfile");
     if (storedProfile) {
-      setProfile(JSON.parse(storedProfile));
-      setIsEditMode(false);        // Show View for returning users
+      try {
+        const parsedProfile = JSON.parse(storedProfile);
+        setProfile(parsedProfile);
+        setIsEditMode(false);        // Show View for returning users
+      } catch (error) {
+        console.error("Error parsing stored profile:", error);
+        localStorage.removeItem("userProfile");
+        setIsEditMode(true);
+      }
     } else {
       setIsEditMode(true);         // New user → Edit first
     }
@@ -53,13 +56,17 @@ const ProfilePage = () => {
     localStorage.setItem("userProfile", JSON.stringify(profileToSave));
     setIsEditMode(false);
     setNotification("Profile updated successfully!");
+    
+    // Auto-clear notification after 3 seconds
     setTimeout(() => setNotification(null), 3000);
   };
 
-  // Switch to Edit page
-  const handleEdit = () => setIsEditMode(true);
+  // Switch to Edit page - ALWAYS use empty profile
+  const handleEdit = () => {
+    setIsEditMode(true);
+  };
 
-  // Handle Cancel: for new user, disallow cancel until save; for others, go back to view
+  // Handle Cancel: for new user, prevent cancel; for others, go back to view
   const handleCancel = () => {
     if (profile) {
       setIsEditMode(false);
@@ -67,6 +74,11 @@ const ProfilePage = () => {
       setNotification("Please complete your profile to continue.");
       setTimeout(() => setNotification(null), 3000);
     }
+  };
+
+  // Clear notification manually
+  const clearNotification = () => {
+    setNotification(null);
   };
 
   return (
@@ -81,10 +93,12 @@ const ProfilePage = () => {
             transition={{ duration: 0.4 }}
           >
             <ProfileSettings
-              initialProfile={profile || emptyProfile}
+              key={isEditMode ? 'edit' : 'view'} // Force remount on mode change
+              initialProfile={emptyProfile}
               onSave={handleProfileUpdate}
               onCancel={handleCancel}
-            />
+           />
+
           </motion.div>
         ) : (
           <motion.div
@@ -101,10 +115,12 @@ const ProfilePage = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      
+      {/* Fixed Notification with proper close handler */}
       {notification && (
         <ProfileNotification 
           message={notification} 
-          onClose={() => setNotification(null)}
+          onClose={clearNotification} // This will properly clear the notification
         />
       )}
     </div>

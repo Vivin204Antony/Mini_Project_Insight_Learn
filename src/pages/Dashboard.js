@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom'; // Added
+import { useNavigate } from 'react-router-dom';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 24, scale: 0.98 },
@@ -25,7 +25,7 @@ const containerVariants = {
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const navigate = useNavigate(); // Added
+  const navigate = useNavigate();
 
   const modules = [
     {
@@ -43,13 +43,6 @@ const Dashboard = () => {
       color: '#10b981'
     },
     {
-      key: 'nudge',
-      title: 'Motivational Nudge Generator',
-      description: 'Get inspiring tips and motivation.',
-      icon: '💡',
-      color: '#f59e0b'
-    },
-    {
       key: 'profile',
       title: 'User Profile & Settings',
       description: 'View and edit your profile information.',
@@ -60,14 +53,12 @@ const Dashboard = () => {
 
   const handleModuleClick = (moduleKey) => {
     if (moduleKey === 'profile') {
-      navigate('/profile-settings'); // Navigate to profile settings page
+      navigate('/profile-settings');
     } else {
-      // TODO: Navigate to other specific module pages
       console.log(`Clicked on ${moduleKey} module`);
-      // You can add navigation for other modules here later:
+      // TODO: Add navigation for other modules:
       // if (moduleKey === 'upload') navigate('/upload-documents');
       // if (moduleKey === 'progress') navigate('/progress-tracker');
-      // if (moduleKey === 'nudge') navigate('/motivational-nudge');
     }
   };
 
@@ -89,7 +80,7 @@ const Dashboard = () => {
         </motion.div>
 
         <motion.div 
-          className="dashboard-grid"
+          className="dashboard-grid single-row"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
