@@ -171,12 +171,12 @@ body {
 /* FIXED DASHBOARD GRID - 2x2 LAYOUT */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);  /* Always 2 columns */
-  grid-template-rows: repeat(2, 1fr);     /* Always 2 rows */
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 2rem;
-  max-width: 1000px;  /* Smaller max-width for better proportion */
+  max-width: 1000px;
   margin: 0 auto;
-  min-height: 400px;  /* Ensure consistent height */
+  min-height: 400px;
 }
 
 .dashboard-card {
@@ -192,8 +192,8 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  /* Distribute content evenly */
-  min-height: 180px;  /* Consistent card height */
+  justify-content: space-between;
+  min-height: 180px;
 }
 
 .dashboard-card:hover {
@@ -204,24 +204,24 @@ body {
 
 .card-icon {
   font-size: 3rem;
-  margin-bottom: 1rem;  /* Reduced margin */
+  margin-bottom: 1rem;
   display: block;
 }
 
 .card-title {
-  font-size: 1.3rem;  /* Slightly smaller for better fit */
+  font-size: 1.3rem;
   font-weight: 700;
   color: #1e293b;
-  margin-bottom: 0.8rem;  /* Reduced margin */
+  margin-bottom: 0.8rem;
   line-height: 1.3;
 }
 
 .card-description {
   color: #64748b;
-  font-size: 0.95rem;  /* Slightly smaller */
+  font-size: 0.95rem;
   line-height: 1.5;
-  margin-bottom: 1rem;  /* Reduced margin */
-  flex-grow: 1;  /* Take available space */
+  margin-bottom: 1rem;
+  flex-grow: 1;
 }
 
 .card-arrow {
@@ -349,44 +349,10 @@ body.modal-open {
   overflow: hidden;
 }
 
-/* Google Button Styles */
-.google-login-btn {
-  margin-top: 1.2rem;
-}
-
-.google-btn-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7rem;
-  padding: 0.8rem 1.1rem;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 6px;
-  background: #fff;
-  color: #374151;
-  font-weight: 500;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 1px 8px rgba(60,64,67,.08);
-  transition: background 0.2s, box-shadow 0.2s, border 0.2s;
-  width: 100%;
-}
-
-.google-btn-inner:hover {
-  background: #f2f3f4;
-  border-color: #4285f4;
-  box-shadow: 0 2px 16px rgba(60,64,67,.11);
-}
-
-.google-icon {
-  display: flex;
-  align-items: center;
-}
-
 /* Responsive Design - UPDATED */
 @media (max-width: 1024px) {
   .dashboard-grid {
-    grid-template-columns: repeat(2, 1fr);  /* Keep 2 columns on tablet */
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
     max-width: 800px;
   }
@@ -448,8 +414,8 @@ body.modal-open {
   }
   
   .dashboard-grid {
-    grid-template-columns: 1fr;  /* Single column on mobile */
-    grid-template-rows: auto;    /* Auto rows on mobile */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
     gap: 1.5rem;
     min-height: auto;
   }
