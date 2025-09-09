@@ -5,12 +5,13 @@ import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Dashboard from './pages/Dashboard';
-import ProfilePage from './components/ProfilePage'; // <-- Updated import
+import PDFTutorModule from './pages/dashboard/PDFTutorModule'; // <-- Import your upload module
+import ProfilePage from './components/ProfilePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthModal from './components/AuthModal';
 import './App.css';
 
-// Page transition wrapper component
+// Page transition wrapper
 const PageWrapper = ({ children }) => {
   const location = useLocation();
   return (
@@ -52,23 +53,19 @@ const AppContent = () => {
 
   return (
     <div className="app">
-      <Navbar
-        openModal={openModal}
-        isLoginMode={isLoginMode}
-      />
+      <Navbar openModal={openModal} isLoginMode={isLoginMode} />
       <PageWrapper>
         <Routes>
           {/* Home page route */}
-          <Route 
-            path="/" 
-            element={<HeroSection />} 
-          />
-          {/* Protected routes */}
+          <Route path="/" element={<HeroSection />} />
+          {/* Protected (logged-in) routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile-settings" element={<ProfilePage />} /> {/* <-- Highlighted change */}
+            <Route path="/dashboard/upload" element={<PDFTutorModule />} /> {/* <-- Upload PDF module */}
+            <Route path="/profile-settings" element={<ProfilePage />} />
+            {/* Add more dashboard subpages here if needed */}
           </Route>
-          {/* Redirect unknown routes to home */}
+          {/* Redirect unknown routes */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </PageWrapper>
@@ -82,14 +79,12 @@ const AppContent = () => {
   );
 };
 
-const App = () => {
-  return (
-    <AuthProvider>
-      <BrowserRouter>
-        <AppContent />
-      </BrowserRouter>
-    </AuthProvider>
-  );
-};
+const App = () => (
+  <AuthProvider>
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  </AuthProvider>
+);
 
 export default App;

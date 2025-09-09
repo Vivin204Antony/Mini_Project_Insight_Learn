@@ -54,11 +54,10 @@ const Dashboard = () => {
   const handleModuleClick = (moduleKey) => {
     if (moduleKey === 'profile') {
       navigate('/profile-settings');
-    } else {
-      console.log(`Clicked on ${moduleKey} module`);
-      // TODO: Add navigation for other modules:
-      // if (moduleKey === 'upload') navigate('/upload-documents');
-      // if (moduleKey === 'progress') navigate('/progress-tracker');
+    } else if (moduleKey === 'upload') {
+      navigate('/dashboard/upload');  // <-- This should match your router!
+    } else if (moduleKey === 'progress') {
+      navigate('/dashboard/progress'); // <-- Make this route if you have a Progress module/page
     }
   };
 
@@ -85,7 +84,7 @@ const Dashboard = () => {
           initial="hidden"
           animate="visible"
         >
-          {modules.map((module, index) => (
+          {modules.map((module) => (
             <motion.button
               key={module.key}
               className="dashboard-card"

@@ -1,0 +1,125 @@
+.pdf-tutor-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #edf1f8 0%, #f9fafc 100%);
+}
+
+.upload-card {
+  background: #fff;
+  border-radius: 1.7rem;
+  box-shadow: 0 10px 40px 0 rgba(30,60,90,0.10), 0 1.5px 10px rgba(0,0,0,0.03);
+  padding: 2.75rem 2.2rem 2.15rem 2.2rem;
+  max-width: 435px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+  position: relative;
+}
+
+.upload-card:hover {
+  box-shadow: 0 18px 65px 0 rgba(30,40,90,0.18);
+}
+
+.upload-instructions {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.upload-main-icon {
+  color: #3b82f6;
+  background: #ecf3fb;
+  font-size: 2.4rem;
+  border-radius: 50%;
+  padding: 0.45em 0.6em;
+  margin-bottom: 1.1rem;
+  display: inline-block;
+}
+
+.upload-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #212c47;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.32rem;
+}
+
+.upload-subtext {
+  color: #64748b;
+  font-size: 1.035rem;
+  margin-bottom: 0.9rem;
+  font-weight: 500;
+}
+
+.upload-dropzone {
+  background: #f5f8fc;
+  border: 2px dashed #c3dbf7;
+  border-radius: 1.1rem;
+  padding: 1.7rem 0.2rem 1.7rem 0.2rem;
+  width: 100%;
+  min-height: 118px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.18s;
+  margin-bottom: 1.35rem;
+}
+
+.upload-dropzone:hover, .upload-dropzone.active {
+  background: #e7f0fe;
+  border-color: #429cf4;
+}
+
+.upload-browse-link {
+  background: #f1f5f9;
+  color: #3b82f6;
+  text-decoration: none;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.95rem;
+}
+
+.upload-browse-link:hover {
+  background: #e2e8f0;
+  border-color: #3b82f6;
+  color: #2563eb;
+}
+
+
+.upload-or {
+  color: #afb7c7;
+  margin: 0.92rem 0 0.34rem 0;
+  font-size: 1.02rem;
+  font-weight: 500;
+  display: block;
+}
+
+.upload-placeholder-types {
+  margin-top: 0.8rem;
+  font-size: 0.99rem;
+  color: #88a0b7;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .upload-card {
+    padding: 1.3rem 0.7rem 1.3rem 0.7rem;
+    max-width: 97vw;
+    min-width: 0;
+  }
+}
