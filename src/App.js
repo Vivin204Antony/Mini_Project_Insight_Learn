@@ -5,7 +5,9 @@ import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Dashboard from './pages/Dashboard';
-import PDFTutorModule from './pages/dashboard/PDFTutorModule'; // <-- Import your upload module
+import PDFTutorModule from './pages/dashboard/PDFTutorModule';
+import ProgressTracker from './pages/dashboard/ProgressTracker';
+import ConceptDetail from './pages/dashboard/ConceptDetail';
 import ProfilePage from './components/ProfilePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthModal from './components/AuthModal';
@@ -56,20 +58,39 @@ const AppContent = () => {
       <Navbar openModal={openModal} isLoginMode={isLoginMode} />
       <PageWrapper>
         <Routes>
-          {/* Home page route */}
+          {/* Public Routes */}
           <Route path="/" element={<HeroSection />} />
-          {/* Protected (logged-in) routes */}
+          
+          {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
+            {/* Main Dashboard */}
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/upload" element={<PDFTutorModule />} /> {/* <-- Upload PDF module */}
+            
+            {/* PDF Upload & Tutor Module */}
+            <Route path="/dashboard/upload" element={<PDFTutorModule />} />
+            
+            {/* Progress Tracker Routes */}
+            <Route path="/dashboard/progress" element={<ProgressTracker />} />
+            <Route path="/dashboard/progress/:conceptId" element={<ConceptDetail />} />
+            
+            {/* User Profile & Settings */}
             <Route path="/profile-settings" element={<ProfilePage />} />
-            {/* Add more dashboard subpages here if needed */}
+            <Route path="/dashboard/profile" element={<ProfilePage />} />
+            
+            {/* Future Dashboard Modules - Add as needed */}
+            {/* 
+            <Route path="/dashboard/flashcards" element={<FlashcardModule />} />
+            <Route path="/dashboard/quizzes" element={<QuizModule />} />
+            <Route path="/dashboard/achievements" element={<AchievementsModule />} />
+            */}
           </Route>
-          {/* Redirect unknown routes */}
+          
+          {/* Redirect unknown routes to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </PageWrapper>
-      {/* Global modal for authentication */}
+      
+      {/* Global Authentication Modal */}
       <AuthModal
         isOpen={modalOpen}
         onClose={closeModal}

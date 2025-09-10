@@ -52,14 +52,14 @@ const Dashboard = () => {
   ];
 
   const handleModuleClick = (moduleKey) => {
-    if (moduleKey === 'profile') {
-      navigate('/profile-settings');
-    } else if (moduleKey === 'upload') {
-      navigate('/dashboard/upload');  // <-- This should match your router!
-    } else if (moduleKey === 'progress') {
-      navigate('/dashboard/progress'); // <-- Make this route if you have a Progress module/page
-    }
-  };
+  if (moduleKey === 'profile') {
+    navigate('/profile-settings');
+  } else if (moduleKey === 'upload') {
+    navigate('/dashboard/upload');
+  } else if (moduleKey === 'progress') {
+    navigate('/dashboard/progress'); 
+  }
+};
 
   return (
     <section className="dashboard-wrapper">
