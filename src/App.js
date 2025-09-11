@@ -7,7 +7,6 @@ import HeroSection from './components/HeroSection';
 import Dashboard from './pages/Dashboard';
 import PDFTutorModule from './pages/dashboard/PDFTutorModule';
 import ProgressTracker from './pages/dashboard/ProgressTracker';
-import ConceptDetail from './pages/dashboard/ConceptDetail';
 import ProfilePage from './components/ProfilePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthModal from './components/AuthModal';
@@ -71,7 +70,6 @@ const AppContent = () => {
             
             {/* Progress Tracker Routes */}
             <Route path="/dashboard/progress" element={<ProgressTracker />} />
-            <Route path="/dashboard/progress/:conceptId" element={<ConceptDetail />} />
             
             {/* User Profile & Settings */}
             <Route path="/profile-settings" element={<ProfilePage />} />
