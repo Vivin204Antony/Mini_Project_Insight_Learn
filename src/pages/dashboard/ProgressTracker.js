@@ -34,24 +34,6 @@ const MOCK_PDFS = [
   },
 ];
 
-const statusMeta = {
-  completed: {
-    label: "Completed",
-    icon: "✅",
-    colorClass: "status-completed",
-  },
-  paused: {
-    label: "Paused",
-    icon: "⏸️",
-    colorClass: "status-paused",
-  },
-  "not-started": {
-    label: "Not Started",
-    icon: "⏺️",
-    colorClass: "status-notstarted",
-  },
-};
-
 const ProgressTracker = ({ onResume }) => {
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -146,10 +128,9 @@ const ProgressTracker = ({ onResume }) => {
                   </div>
                   <div className="session-list-body">
                     {sessions.map((s, i) => {
-                      const meta = statusMeta[s.status];
                       return (
                         <motion.div
-                        className={`pdf-session-card ${meta.colorClass}`}
+                        className="pdf-session-card"
                         key={s.id}
                         initial={{ opacity: 0, y: 50, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -167,10 +148,6 @@ const ProgressTracker = ({ onResume }) => {
                         }}
                       >
                         <div className="pdf-session-header">
-                          <span className="session-status">
-                            <span className="status-icon">{meta.icon}</span>
-                            <span className="status-text">{meta.label}</span>
-                          </span>
                           <span className="session-date">
                             Uploaded: {s.uploadDate}
                           </span>

@@ -103,52 +103,15 @@
   transform: translateY(-2px);
 }
 
-/* Status color indicators with enhanced styling */
-.status-completed .session-status { 
-  color: #16a34a;
-  background: #dcfce7;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-}
-
-.status-paused .session-status { 
-  color: #ca8a04;
-  background: #fef3c7;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-}
-
-.status-notstarted .session-status { 
-  color: #374151;
-  background: #f3f4f6;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-}
+/* Status color indicators with enhanced styling - REMOVED */
 
 .pdf-session-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   font-size: 1.01rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
-}
-
-.session-status {
-  display: flex;
-  align-items: center;
-  gap: 0.38rem;
-}
-.status-icon {
-  font-size: 1.18rem;
-}
-.status-text {
-  font-size: 0.96rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
 }
 
 .session-date {
@@ -208,18 +171,6 @@
 .pdf-session-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-}
-
-/* Pulse animation for status icons */
-.status-icon {
-  display: inline-block;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
 }
 
 /* Fade-in animation for cards */
